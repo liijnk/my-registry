@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "loading-button",
+  "title": "Loading Button",
+  "description": "A reusable loading button.",
+  "dependencies": [
+    "lucide-react",
+    "clsx",
+    "tailwind-merge"
+  ],
+  "files": [
+    {
+      "path": "components/ui/loading-button.tsx",
+      "content": "\"use client\"\r\n\r\nimport * as React from \"react\"\r\nimport { Loader2 } from \"lucide-react\"\r\nimport { cn } from \"@/lib/utils\"\r\n\r\ntype LoadingButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {\r\n  loading?: boolean\r\n}\r\n\r\nexport function LoadingButton({\r\n  className,\r\n  loading = false,\r\n  children,\r\n  disabled,\r\n  ...props\r\n}: LoadingButtonProps) {\r\n  return (\r\n    <button\r\n      className={cn(\r\n        \"inline-flex items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:opacity-90 disabled:pointer-events-none disabled:opacity-50\",\r\n        className\r\n      )}\r\n      disabled={disabled || loading}\r\n      {...props}\r\n    >\r\n      {loading && <Loader2 className=\"h-4 w-4 animate-spin\" />}\r\n      {children}\r\n    </button>\r\n  )\r\n}",
+      "type": "registry:ui"
+    },
+    {
+      "path": "lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from \"clsx\"\r\nimport { twMerge } from \"tailwind-merge\"\r\n\r\nexport function cn(...inputs: ClassValue[]) {\r\n  return twMerge(clsx(inputs))\r\n}\r\n",
+      "type": "registry:lib"
+    }
+  ],
+  "type": "registry:ui"
+}
